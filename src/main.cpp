@@ -1,18 +1,25 @@
 #include <Arduino.h>
-//Server_1
-// put function declarations here:
-int myFunction(int, int);
+#include <GyverMotor2.h>
+GMotor2<DRIVER2WIRE> motor(23,22);
+GMotor2<DRIVER2WIRE> motor1(25,26);
+GMotor2<DRIVER2WIRE> motor2(27,13);
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 4);
+  motor.setMinDuty(70);   // мин. ШИМ
+  motor.reverse(1);     // реверс
+  motor.setDeadtime(5); // deadtime
+  delay(2500);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  motor.setSpeed(100);
+  motor1.setSpeed(-100);
+  motor2.setSpeed(255);
+  delay(3000);
+  
+  motor.setSpeed(-100);
+  motor1.setSpeed(100);
+  motor2.setSpeed(-255);
+  delay(3000);
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
-}
